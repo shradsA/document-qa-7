@@ -9,7 +9,10 @@ st.set_page_config(
 
 # Create navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.selectbox("Choose a Lab:", ["Lab 2 (Default)", "Lab 1"])
+page = st.sidebar.selectbox(
+    "Choose a Lab:",
+    ["Lab 2 (Default)", "Lab 1", "Lab 3 (Chatbot)"]
+)
 
 # Import and run the selected page
 if page == "Lab 1":
@@ -18,3 +21,6 @@ if page == "Lab 1":
 elif page == "Lab 2 (Default)":
     import Lab2
     Lab2.run()
+elif page == "Lab 3 (Chatbot)":
+    import Lab3
+    Lab3.run()

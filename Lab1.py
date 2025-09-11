@@ -1,20 +1,20 @@
 import streamlit as st
 from openai import OpenAI
-from dotenv import load_dotenv
-import os
-
-load_dotenv()  # Load variables from .env
 
 def run():
     st.title("Lab 1 - Document Q&A")
 
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key:
-        st.error("OpenAI API key not found! Please add it to your .env file.")
+    # Get API key from Streamlit secrets
+    try:
+        openai_api_key = st.secrets["OPENAI_API_KEY"]
+    except KeyError:
+        st.error("OpenAI API key not found! Please add it in Streamlit Secrets.")
         return
 
+    # Create OpenAI client
     client = OpenAI(api_key=openai_api_key)
 
+    # File uploader
     uploaded_file = st.file_uploader(
         "Upload a document (.txt or .md)", type=("txt", "md")
     )
